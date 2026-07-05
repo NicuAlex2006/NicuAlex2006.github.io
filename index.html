@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexandru-Cristian Nicu — Mathematics · Economics · Code</title>
+<meta name="description" content="Alexandru-Cristian Nicu — Bachelor student at École Polytechnique (Mathematics & Economics, CS minor). Quantitative research, machine learning, and systems projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F2ED;
+    --ink:#151A21;
+    --ink-soft:#3E444D;
+    --wine:#722F37;
+    --wine-deep:#571F26;
+    --brass:#8A6C2B;
+    --line:#D8DAD0;
+    --night:#131722;
+    --night-ink:#E9EAF0;
+    --night-soft:#9BA1B5;
+    --card:#FAFAF7;
+    --max:1120px;
+    --font-display:"Archivo",system-ui,sans-serif;
+    --font-body:"Source Serif 4",Georgia,serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:1.0625rem;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--wine);color:#fff}
+
+  /* ---------- accessibility ---------- */
+  .skip-link{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--ink);color:#fff;padding:.75rem 1.25rem;
+    font-family:var(--font-mono);font-size:.875rem;text-decoration:none;
+  }
+  .skip-link:focus{left:0}
+  a:focus-visible,button:focus-visible{
+    outline:3px solid var(--wine);outline-offset:3px;border-radius:2px;
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max);margin:0 auto;padding:.85rem 1.5rem;
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  }
+  .monogram{
+    font-family:var(--font-display);font-weight:900;font-size:1.05rem;
+    letter-spacing:.02em;text-decoration:none;color:var(--ink);
+  }
+  .monogram span{color:var(--wine)}
+  nav ul{display:flex;gap:.25rem;list-style:none;flex-wrap:wrap}
+  nav a{
+    font-family:var(--font-mono);font-size:.8rem;letter-spacing:.04em;
+    color:var(--ink-soft);text-decoration:none;padding:.55rem .7rem;border-radius:4px;
+  }
+  nav a:hover{color:var(--wine);background:rgba(114,47,55,.07)}
+
+  /* ---------- shared ---------- */
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 1.5rem}
+  section{padding:4.5rem 0}
+  .eyebrow{
+    font-family:var(--font-mono);font-size:.8rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--wine);display:block;margin-bottom:1rem;
+  }
+  h2{
+    font-family:var(--font-display);font-weight:800;font-size:clamp(1.7rem,3.5vw,2.4rem);
+    letter-spacing:-.02em;line-height:1.1;margin-bottom:2.25rem;
+  }
+  .mono{font-family:var(--font-mono)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:5rem 0 3.5rem;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:3rem;align-items:center}
+  .hero .eyebrow{color:var(--ink-soft)}
+  .hero .eyebrow b{color:var(--wine);font-weight:500}
+  h1{
+    font-family:var(--font-display);font-weight:900;
+    font-size:clamp(2.6rem,6.4vw,4.6rem);
+    line-height:.98;letter-spacing:-.03em;margin:.25rem 0 1.4rem;
+  }
+  h1 .thin{font-weight:600;color:var(--ink-soft)}
+  .hero p.lede{font-size:1.2rem;max-width:34em;color:var(--ink-soft)}
+  .hero p.lede strong{color:var(--ink);font-weight:500}
+  .cta-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}
+  .btn{
+    font-family:var(--font-mono);font-size:.85rem;letter-spacing:.03em;
+    text-decoration:none;padding:.8rem 1.3rem;border-radius:4px;
+    display:inline-flex;align-items:center;gap:.5rem;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--wine);color:#fff}
+  .btn-primary:hover{background:var(--wine-deep)}
+  .btn-ghost{border:1px solid var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+  .hero-side{display:flex;flex-direction:column;gap:1.25rem;align-items:center}
+  .portrait{
+    width:190px;height:190px;border-radius:50%;overflow:hidden;
+    border:3px solid var(--ink);box-shadow:8px 8px 0 var(--wine);
+    display:grid;place-items:center;background:var(--wine);color:#fff;
+    font-family:var(--font-display);font-weight:900;font-size:3.2rem;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+
+  /* facts strip */
+  .facts{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:3rem;
+  }
+  .fact{background:var(--card);padding:1.1rem 1.25rem}
+  .fact .k{font-family:var(--font-display);font-weight:800;font-size:1.35rem;letter-spacing:-.01em}
+  .fact .k em{font-style:normal;color:var(--wine)}
+  .fact .v{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:.2rem}
+
+  /* ---------- experience ---------- */
+  .xp{border-left:2px solid var(--line);margin-left:.4rem}
+  .xp-item{position:relative;padding:0 0 2.4rem 2rem}
+  .xp-item:last-child{padding-bottom:.5rem}
+  .xp-item::before{
+    content:"";position:absolute;left:-7px;top:.5rem;width:12px;height:12px;
+    border-radius:50%;background:var(--paper);border:3px solid var(--wine);
+  }
+  .xp-date{font-family:var(--font-mono);font-size:.78rem;color:var(--brass);letter-spacing:.05em}
+  .xp-item h3{font-family:var(--font-display);font-weight:700;font-size:1.2rem;margin:.3rem 0 .1rem;letter-spacing:-.01em}
+  .xp-item .org{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-soft)}
+  .xp-item p{margin-top:.6rem;max-width:44em;color:var(--ink-soft)}
+
+  /* ---------- projects ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
+  .proj{
+    background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:1.5rem;display:flex;flex-direction:column;gap:.7rem;
+    text-decoration:none;color:inherit;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  a.proj:hover{transform:translateY(-3px);border-color:var(--wine);box-shadow:6px 6px 0 rgba(114,47,55,.12)}
+  .proj-meta{display:flex;justify-content:space-between;gap:1rem;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--brass);text-transform:uppercase}
+  .proj h3{font-family:var(--font-display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em;line-height:1.2}
+  .proj p{color:var(--ink-soft);font-size:.98rem;flex-grow:1}
+  .proj .go{font-family:var(--font-mono);font-size:.8rem;color:var(--wine)}
+  .proj-fig{display:block;width:100%;border:1px solid var(--line);border-radius:4px}
+  a.proj:hover .go{text-decoration:underline}
+  .proj-links{display:flex;gap:1.4rem;flex-wrap:wrap}
+  .proj-links a.go{text-decoration:none}
+  .proj-links a.go:hover,.proj-links a.go:focus-visible{text-decoration:underline}
+
+  /* ---------- education / certs ---------- */
+  .edu-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem}
+  .edu-main h3{font-family:var(--font-display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+  .edu-main .mono{color:var(--brass);font-size:.8rem;letter-spacing:.06em}
+  .edu-main p{margin-top:.8rem;color:var(--ink-soft);max-width:40em}
+  ul.certs{list-style:none;display:flex;flex-direction:column;gap:.9rem}
+  ul.certs li{padding-left:1.2rem;position:relative;color:var(--ink-soft)}
+  ul.certs li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;background:var(--wine)}
+  ul.certs li b{color:var(--ink);font-weight:500}
+
+  /* ---------- skills ---------- */
+  .skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+  .skill-col{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1.4rem 1.5rem}
+  .skill-col h3{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--wine);margin-bottom:1rem;font-weight:500}
+  .tags{display:flex;flex-wrap:wrap;gap:.5rem}
+  .tag{
+    font-family:var(--font-mono);font-size:.78rem;padding:.35rem .65rem;
+    border:1px solid var(--line);border-radius:99px;color:var(--ink-soft);background:var(--paper);
+  }
+
+  /* ---------- after hours (night) ---------- */
+  .night{background:var(--night);color:var(--night-ink)}
+  .night .eyebrow{color:#C89AA0}
+  .night h2{color:#fff}
+  .night-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  .night p{color:var(--night-soft);max-width:36em}
+  .night p b{color:var(--night-ink);font-weight:500}
+  .night a{color:#DBAAB1}
+  .vinyl{
+    width:210px;height:210px;border-radius:50%;margin:0 auto;position:relative;
+    background:repeating-radial-gradient(circle at 50% 50%, #1D2230 0 3px, #171B27 3px 6px);
+    border:1px solid #2A3040;
+    animation:spin 9s linear infinite;
+  }
+  .vinyl::after{
+    content:"dn";position:absolute;inset:0;margin:auto;width:74px;height:74px;border-radius:50%;
+    background:var(--wine);display:grid;place-items:center;color:#F5E9EA;
+    font-family:var(--font-display);font-weight:900;font-size:1.5rem;letter-spacing:-.02em;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- footer / contact ---------- */
+  footer{border-top:1px solid var(--line);padding:4rem 0 3rem}
+  .contact-row{display:flex;flex-wrap:wrap;gap:2.5rem;justify-content:space-between;align-items:flex-end}
+  .contact-row h2{margin-bottom:.75rem}
+  .contact-links{display:flex;flex-direction:column;gap:.45rem;font-family:var(--font-mono);font-size:.9rem}
+  .contact-links a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  .contact-links a:hover{color:var(--wine);border-color:var(--wine)}
+  .fineprint{margin-top:3rem;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-soft);letter-spacing:.05em}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .hero-grid,.edu-grid,.night-grid{grid-template-columns:1fr}
+    .hero-side{order:-1;flex-direction:row;justify-content:flex-start}
+    .portrait{width:120px;height:120px;font-size:2rem;box-shadow:6px 6px 0 var(--wine)}
+    .facts{grid-template-columns:repeat(2,1fr)}
+    .proj-grid,.skill-cols{grid-template-columns:1fr}
+    section{padding:3.25rem 0}
+    nav ul{display:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="monogram" href="#top" aria-label="Back to top">A—C<span>.</span>NICU</a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#after-hours">After hours</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Paris, France · <b>École Polytechnique</b> · Class of 2028</span>
+          <h1>Alexandru-Cristian<br>Nicu<span class="thin">.</span></h1>
+          <p class="lede">
+            Bachelor student in <strong>Mathematics &amp; Economics</strong> with a minor in
+            <strong>Computer Science</strong>. I build things at the intersection of quantitative
+            research and software — from econometric panel studies to transformers written from scratch.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:alexandru-cristian.nicu@polytechnique.edu">Email me</a>
+            <a class="btn btn-ghost" href="https://github.com/NicuAlex2006" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/alexandru-cristian-nicu-29a749281/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="portrait" id="portrait">
+            <img src="assets/profile.jpg" alt="Portrait of Alexandru-Cristian Nicu"
+                 onerror="this.remove();document.getElementById('portrait').textContent='AN';">
+          </div>
+        </div>
+      </div>
+
+      <div class="facts" role="list" aria-label="Key facts">
+        <div class="fact" role="listitem"><div class="k">124M<em>·</em>params</div><div class="v">transformer, from scratch</div></div>
+        <div class="fact" role="listitem"><div class="k">1,680</div><div class="v">obs. in ECB panel study</div></div>
+        <div class="fact" role="listitem"><div class="k">75%</div><div class="v">win rate · 142 trades backtested</div></div>
+        <div class="fact" role="listitem"><div class="k">4</div><div class="v">internships since 2022</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <div class="wrap">
+      <span class="eyebrow">01 — Experience</span>
+      <h2>Where I've worked</h2>
+      <div class="xp">
+        <article class="xp-item">
+          <span class="xp-date">Jul 2024 — Sep 2024 · Remote</span>
+          <h3>AI/ML Engineering Intern</h3>
+          <span class="org">Loon Biosciences</span>
+          <p>Developed and applied time-series foundation models in Python to forecast timings in healthcare
+             logistics, and built ML pipelines to optimize processes across the drug-development workflow.</p>
+        </article>
+        <article class="xp-item">
+          <span class="xp-date">Aug 2023 — Sep 2023 · Bucharest</span>
+          <h3>Embedded Systems Intern</h3>
+          <span class="org">Wave Motion Labs</span>
+          <p>Engineered and optimized ESP32-based IoT products.</p>
+        </article>
+        <article class="xp-item">
+          <span class="xp-date">Jun 2023 · Bucharest</span>
+          <h3>Research Intern</h3>
+          <span class="org">ELI-NP — Extreme Light Infrastructure</span>
+          <p>Solved advanced optimization problems, including quantum-computing methods, and integrated SQL
+             databases with client applications.</p>
+        </article>
+        <article class="xp-item">
+          <span class="xp-date">Jul 2022 — Aug 2022 · Bucharest</span>
+          <h3>Software Developer Intern</h3>
+          <span class="org">Bitdefender</span>
+          <p>Authored C++ Windows DLLs for system-file operations with unit tests, and built a multi-threaded
+             directory &amp; DLL-load monitor using a custom thread pool and the observer pattern over the
+             Win32 API, with a C#/WinUI front-end.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <span class="eyebrow">02 — Projects</span>
+      <h2>Selected work</h2>
+      <div class="proj-grid">
+        <div class="proj">
+          <div class="proj-meta"><span>Econometrics · TeX + R</span><span>2026</span></div>
+          <h3>ECB rate hikes &amp; Eurozone unemployment</h3>
+          <img class="proj-fig" src="assets/ecb-did-parallel-trends.png"
+               alt="Parallel-trends figure from the report: average unemployment rate for high-debt (treated) and low-debt (control) Eurozone countries, 2018–2025, with the first ECB rate hike of July 2022 marked" loading="lazy">
+          <p>Co-authored study estimating the causal effect of ECB monetary tightening on unemployment via
+             difference-in-differences with two-way fixed effects and FE-2SLS, on a 20-country, 84-month
+             panel — 1,680 observations, 2018–2024.</p>
+          <div class="proj-links">
+            <a class="go" href="https://github.com/NicuAlex2006/DID-Approach" target="_blank" rel="noopener">View repository →</a>
+            <a class="go" href="assets/ecb-did-report.pdf" target="_blank" rel="noopener">Read the report (PDF) →</a>
+          </div>
+        </div>
+        <a class="proj" href="https://github.com/NicuAlex2006/Arbitrage-Project" target="_blank" rel="noopener">
+          <div class="proj-meta"><span>Quant finance · Python</span><span>2026</span></div>
+          <h3>Pairs-trading statistical arbitrage</h3>
+          <img class="proj-fig" src="assets/pair_3_COF_WFC.png"
+               alt="Backtest of the COF–WFC cointegrated pair: normalized prices with long/short/exit trade signals, and cumulative strategy return of 73.9% over 2023–2025" loading="lazy">
+          <p>Cointegration-based (Engle–Granger) pairs-trading engine over the S&amp;P 500 with rolling
+             z-score entry/exit signals; backtested 5 cointegrated pairs to a 75% win rate across
+             142 trades, 2023–2025.</p>
+          <span class="go">View repository →</span>
+        </a>
+        <a class="proj" href="https://github.com/NicuAlex2006/NLP-Project" target="_blank" rel="noopener">
+          <div class="proj-meta"><span>NLP · Python + PyTorch</span><span>2026</span></div>
+          <h3>Web-grounded NLP search agent</h3>
+          <p>Built a 124M-parameter transformer from scratch in PyTorch (12 layers, RoPE, SwiGLU) as one of
+             six swappable models in a web-grounded QA platform on FastAPI/Streamlit, benchmarked across
+             ten use cases.</p>
+          <span class="go">View repository →</span>
+        </a>
+        <a class="proj" href="https://github.com/NicuAlex2006/Pandemic-Outbreak-Mathematical-Modeling-Approach" target="_blank" rel="noopener">
+          <div class="proj-meta"><span>Applied math · Python</span><span>2026</span></div>
+          <h3>Epidemic optimal control</h3>
+          <p>Mathematical modeling of pandemic outbreaks with an SIRD framework, optimal control via
+             Hamilton–Jacobi–Bellman equations and Snell-envelope stopping, with an interactive
+             Python/Matplotlib dashboard.</p>
+          <span class="go">View repository →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <span class="eyebrow">03 — Education</span>
+      <h2>Education &amp; certifications</h2>
+      <div class="edu-grid">
+        <div class="edu-main">
+          <span class="mono">Sept 2025 — Jun 2028</span>
+          <h3>École Polytechnique, Paris</h3>
+          <p>B.Sc. (expected 2028) — Double Major in Mathematics &amp; Economics, Minor in Computer Science.
+             Coursework in probability &amp; statistics, real analysis, mathematical optimization,
+             econometrics, algorithms &amp; data structures, discrete mathematics, and mathematical modeling.</p>
+        </div>
+        <ul class="certs">
+          <li><b>NTU Singapore</b> — Summer School: Data Analysis with R &amp; Human-Computer Interaction (2026)</li>
+          <li><b>University of Chicago</b> — Pathways in Data Science, A− (2024)</li>
+          <li><b>Università Bocconi</b> — Game Theory &amp; Machine Learning (2023)</li>
+          <li><b>Qubit by Qubit</b> — Introduction to Quantum Computing (2023)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <span class="eyebrow">04 — Skills</span>
+      <h2>Toolbox</h2>
+      <div class="skill-cols">
+        <div class="skill-col">
+          <h3>Programming</h3>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">C#</span>
+            <span class="tag">C</span><span class="tag">SQL</span><span class="tag">R</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>Quantitative &amp; ML</h3>
+          <div class="tags">
+            <span class="tag">Machine learning</span><span class="tag">Time-series forecasting</span>
+            <span class="tag">Portfolio optimization</span><span class="tag">Algorithmic trading</span>
+            <span class="tag">Statistics &amp; probability</span><span class="tag">PyTorch</span>
+            <span class="tag">NumPy / pandas</span><span class="tag">scikit-learn</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <h3>Tools &amp; languages</h3>
+          <div class="tags">
+            <span class="tag">Git</span><span class="tag">LaTeX</span><span class="tag">Excel</span>
+            <span class="tag">Romanian — native</span><span class="tag">English — C1</span>
+            <span class="tag">French — elementary</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AFTER HOURS ============ -->
+  <section class="night" id="after-hours">
+    <div class="wrap">
+      <div class="night-grid">
+        <div>
+          <span class="eyebrow">05 — After hours</span>
+          <h2>dor de noche</h2>
+          <p>When the markets close, the decks open. I run <a href="https://www.youtube.com/@dor_de_noche" target="_blank" rel="noopener"><b>dor de noche</b></a>, a house-music curation
+             project — deep house, jazz-inflected grooves, and long mixes built on a Pioneer DDJ-FLX4.
+             Earlier, I organized <a href="https://connecteens.org/" target="_blank" rel="noopener"><b>Connecteens</b></a> in Bucharest: conferences across banking, AI,
+             Model NATO, and space.</p>
+        </div>
+        <div class="vinyl" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="contact-row">
+        <div>
+          <span class="eyebrow">06 — Contact</span>
+          <h2>Let's talk.</h2>
+          <p style="max-width:32em;color:var(--ink-soft)">Open to internships and research opportunities
+             in quantitative research, machine learning, and software engineering.</p>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:alexandru-cristian.nicu@polytechnique.edu">alexandru-cristian.nicu@polytechnique.edu</a>
+          <a href="tel:+33745728370">+33 7 45 72 83 70</a>
+          <a href="https://github.com/NicuAlex2006" target="_blank" rel="noopener">github.com/NicuAlex2006</a>
+          <a href="https://www.linkedin.com/in/alexandru-cristian-nicu-29a749281/" target="_blank" rel="noopener">linkedin.com/in/alexandru-cristian-nicu</a>
+          <a href="https://www.youtube.com/@dor_de_noche" target="_blank" rel="noopener">youtube.com/@dor_de_noche</a>
+        </div>
+      </div>
+      <p class="fineprint">© 2026 Alexandru-Cristian Nicu · Paris, France · Built by hand, no template.</p>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
